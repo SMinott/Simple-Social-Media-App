@@ -9,20 +9,19 @@ form.addEventListener('submit', (e) => {
     // console.log(e.target)
     // console.log(e.target.value)
     // console.log(e.target.post.value)
-    postsArea(e.target.post.value)
+    createPost(e.target.post.value)
     deleteBtn()
+    editBtn()
     form.reset()
 })
 
-function postsArea(comment){
-    const ul = document.createElement('ul')
-    const li = document.createElement('li')
-    posts.appendChild(ul)
-    // ul.appendChild(li)
-    // console.log(posts)
-    // li.innerText = 'I love that move'
-    console.log(comment)
-    ul.innerHTML = `
+// AREA W/ ALL POSTS LISTED:
+function createPost(comment){
+    // console.log(comment);
+    const ul = document.querySelector('ul');
+    const li = document.createElement('li');
+    ul.appendChild(li);
+    li.innerHTML = `
         <li> 
         <p>${comment}</p>
         <span class="options">
@@ -30,12 +29,11 @@ function postsArea(comment){
         <i class="fas fa-trash-alt"></i>
         </span>
         </li>
-    `
-    // console.log(li.innerHTML)
+    `;
 }
-postsArea()
+// createPost(); You do not need to invoke it here. Only in the form event listener
 
-// DELETE COMMENT
+// DELETE COMMENT:
 function deleteBtn(){
     const deleteBtn = document.getElementsByClassName('fas fa-trash-alt')
     // console.log(deleteBtn)
@@ -45,11 +43,18 @@ function deleteBtn(){
         })
     }
 }
-deleteBtn()
 
-// EDIT COMMENT
+// EDIT COMMENT:
+// When edit btn is clicked 1. place the comment back in the textarea(post) 2. delete it from the ul
 function editBtn(){
     const editBtn = document.getElementsByClassName('fas fa-edit')
     // console.log(editBtn)
+    for(let btn of editBtn){
+        btn.addEventListener('click', (e) => {
+            // console.log('Edit Btn Clicked!')
+            post.value = e.target.parentNode.parentNode.innerText
+            e.target.parentNode.parentNode.remove()
+        })
+    }
 }
-editBtn()
+

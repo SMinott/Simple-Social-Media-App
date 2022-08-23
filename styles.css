@@ -17,12 +17,17 @@ i{
     cursor: pointer;
 }
 
-/* #posts div{
+/* #posts li{
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-style: groove;
 } */
+
+.right{
+    border-style: ridge;
+    background-color: white;
+}
 
 #posts li{
     list-style-type: none;
@@ -31,8 +36,4 @@ i{
 .options{
     display: flex;
     gap: 25px;
-}
-
-#msg{
-    columns: red;
 }
